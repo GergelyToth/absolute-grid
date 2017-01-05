@@ -1,3 +1,5 @@
+'use strict';
+
 (function(global) {
 	let AbsoluteGrid = (options) => new AbsoluteGrid_init(options);
 
@@ -12,7 +14,7 @@
 
 	class AbsoluteGrid_init {
 		constructor(options) {
-			this.options = this.extend(defaultOptions, options); // overwrite the default options with the options provided by the user
+			this.options = this.extend(defaultOptions, options || {}); // overwrite the default options with the options provided by the user
 			this.container = document.querySelector(this.options.containerSelector);
 			this.children = this.container.querySelectorAll(this.options.childrenSelector);
 			this.containerWidth = this.container.clientWidth; // containerWidth is subject to change
