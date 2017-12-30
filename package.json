@@ -1,6 +1,6 @@
 {
   "name": "absolute-grid",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Absolutely positioned grid system to support individual item transitions without disturbing other elements.",
   "main": "absolute-grid.js",
   "directories": {

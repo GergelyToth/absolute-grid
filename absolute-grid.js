@@ -9,7 +9,9 @@
 		width: 190,
 		height: 250,
 		marginX: 10,
-		marginY: 15
+		marginY: 15,
+		enableHover: false,
+		enableClick: false
 	};
 
 	class AbsoluteGrid_init {
@@ -21,6 +23,15 @@
 
 			this.positionCards();
 			window.addEventListener('resize', this.onWindowResize.bind(this));
+			this.children.forEach(child => {
+				if (this.options.enableHover) {
+					child.addEventListener('mouseover', this.onHover.bind(this));
+					child.addEventListener('mouseout', this.onHover.bind(this));
+				}
+				if (this.options.enableClick) {
+					child.addEventListener('click', this.onClick.bind(this));
+				}
+			});
 		}
 
 		/**
@@ -72,6 +83,51 @@
 		onWindowResize() {
 			this.containerWidth = this.container.clientWidth; // recalculate containerWidth
 			this.positionCards(); // re-position the children
+		}
+
+		/**
+		 * Whnen hovering in or out of a card, the 'hover' class will be toggled
+		 * for the children.
+		 */
+		onHover(evt) {
+			if (!evt.target.classList.contains('active')) {
+				evt.target.classList.toggle('hover');
+			}
+		}
+
+		/**
+		 * Uppon clicking a card, an overlay div will be placed at the end of
+		 * the body, attaching a click event on it and the clicked child will
+		 * have an 'acitve' class.
+		 */
+		onClick(evt) {
+			if (this.activeChild) {
+				return;
+			}
+
+			this.overlay = document.createElement('div');
+			this.overlay.className = 'overlay';
+			this.overlay.style.zIndex = 999;
+			document.body.appendChild(this.overlay);
+			this.overlay.addEventListener('click', this.onOverlayClick.bind(this));
+
+			this.children.forEach(child => child.classList.remove('active'));
+			this.activeChild = evt.target;
+			this.activeChild.classList.add('active');
+			this.activeChild.style.zIndex = 1000;
+		}
+
+		/**
+		 * When clicked on the overlay, it will be removed from the DOM, and
+		 * from the child the 'active' class removed.
+		 */
+		onOverlayClick() {
+			this.overlay.removeEventListener('click', this.onOverlayClick);
+			document.body.removeChild(this.overlay);
+
+			this.activeChild.classList.remove('active');
+			this.activeChild.style.zIndex = '';
+			this.activeChild = undefined;
 		}
 	}
 
