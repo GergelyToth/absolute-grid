@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Absolute Grid</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<a class="fork" href="https://github.com/GergelyToth/absolute-grid">Fork me on GitHub</a>
+
+	<header>
+		<div>
+			<h1>Absolute Grid</h1>
+			<p>The grid system that respect's your layout</p>
+
+			<nav>
+				<a href="#example">Example</a>
+				<a href="#options">Options</a>
+				<a href="#usage">Usage</a>
+				<a href="absolute-grid.js" download="">Download</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<h2 id="example">Example</h2>
+		<div class="container">
+			<div class="children">
+				The same element.
+				<span class="visible-when-open">Even when you open it.</span>
+			</div>
+			<div class="children"></div>
+			<div class="children"></div>
+			<div class="children"></div>
+			<div class="children"></div>
+			<div class="children"></div>
+		</div>
+
+		<h2 id="options">Options</h2>
+		<div class="options">
+			<pre>
+				<code>
+<span class="function">AbsoluteGrid</span>({
+  <span class="attribute">containerSelector</span>: <span class="string">'.container'</span>,
+  <span class="attribute">childrenSelector</span>: <span class="string">'.children'</span>,
+  <span class="attribute">width</span>: <span class="number">190</span>,
+  <span class="attribute">height</span>: <span class="number">250</span>,
+  <span class="attribute">marginX</span>: <span class="number">10</span>,
+  <span class="attribute">marginY</span>: <span class="number">15</span>,
+  <span class="attribute">enableHover</span>: <span class="boolean">false</span>,
+  <span class="attribute">enableClick</span>: <span class="boolean">false</span>,
+});</code>
+			</pre>
+		</div>
+
+		<h2 id="usage">Usage</h2>
+		<p>
+			Include <code>absolute-grid.js</code> in your file, and call it with
+			<code>AbsoluteGrid({options})</code>.
+		</p>
+		<p>
+			No styling has been included since I think it will be changed in all
+			cases, making the grid more lightweight.
+		</p>
+		<p>
+			The grid will resize the container automatically, fitting as many
+			elements as possible inside.
+		</p>
+		<p>
+			One of the main use-case of the library is making one grid only, that
+			can be opened, elements moved around, and have the rest of the
+			elements stay in position. Thus avoiding any lightboxes, workarounds,
+			duplication on your website.
+	</main>
+
+	<footer>
+		<div>
+			Made by <a href="gergelytoth.github.io">Gergely Toth</a>
+		</div>
+	</footer>
+
+	<script src="absolute-grid.js"></script>
+	<script>
+		AbsoluteGrid({
+			enableHover: true,
+			enableClick: true
+		});
+	</script>
+</body>
+</html>
